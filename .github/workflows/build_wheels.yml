@@ -51,11 +51,8 @@ jobs:
         run: pip install -e ./ci_tool
 
       - id: discover
-        name: Discover currently-served Termux python version
-        run: |
-          python -m ci_tool discover-python-version \
-            --abi arm64-v8a \
-            --github-output "$GITHUB_OUTPUT"
+        name: Set Termux Python version
+        run: echo "python_version=3.14" >> "$GITHUB_OUTPUT"
 
       - id: resolve_ref
         name: Resolve the release version for this build, if any
