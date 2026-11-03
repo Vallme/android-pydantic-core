@@ -64,7 +64,7 @@ jobs:
 
       - run: echo "Building against Termux python ${{ steps.discover.outputs.python_version }}"
 
-    build:
+  build:
     needs: discover
     runs-on: ubuntu-latest
     strategy:
