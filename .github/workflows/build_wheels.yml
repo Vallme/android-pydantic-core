@@ -64,13 +64,13 @@ jobs:
 
       - run: echo "Building against Termux python ${{ steps.discover.outputs.python_version }}"
 
-  build:
+    build:
     needs: discover
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        android_abi: [arm64-v8a, armeabi-v7a, x86_64, x86]
+        android_abi: [arm64-v8a]
     steps:
       - uses: actions/checkout@v4
 
@@ -91,11 +91,7 @@ jobs:
       - name: Install Rust targets
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: >-
-            aarch64-linux-android
-            armv7-linux-androideabi
-            x86_64-linux-android
-            i686-linux-android
+          targets: aarch64-linux-android
 
       - name: Install maturin + binutils + patchelf
         run: |
@@ -136,12 +132,6 @@ jobs:
         include:
           - android_abi: arm64-v8a
             runner: ubuntu-24.04-arm
-          - android_abi: armeabi-v7a
-            runner: ubuntu-24.04-arm
-          - android_abi: x86_64
-            runner: ubuntu-24.04
-          - android_abi: x86
-            runner: ubuntu-24.04
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
