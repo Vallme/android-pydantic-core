@@ -27,9 +27,9 @@ import requests
 
 from .arches import Arch
 
-TERMUX_PYTHON_POOL_URL = "https://packages.termux.dev/apt/termux-main/pool/main/p/python/"
+TERMUX_PYTHON_POOL_URL = "https://mirrors.ravidwivedi.in/termux/apt/termux-main/pool/main/p/python/"
 
-_DEB_RE = re.compile(r'href="python_([\d.]+-\d+)_(?P<arch>[\w]+)\.deb"')
+_DEB_RE = re.compile(r'href="python_([\d.]+(?:-\d+)?)_(?P<arch>[\w]+)\.deb"')
 
 
 @dataclass(frozen=True)
